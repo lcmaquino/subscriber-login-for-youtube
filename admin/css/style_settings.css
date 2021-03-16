@@ -1,0 +1,37 @@
+.form-table {
+    width: 100%;
+    border-bottom: 1px solid #e0e0e0;
+    margin-bottom: 0.5rem 0;
+}
+
+.php-code {
+    padding: 3px 5px 2px 5px;
+    margin: 0 1px;
+    background: #f0f0f1;
+    font-family: Consolas,Monaco,monospace;
+    font-size: 13px;
+}
+
+.settings_row > td > input[type="text"] {
+    min-width: 60%;
+}
+
+#subscriber_login_for_youtube_user_profile label{
+    display:inline;
+    margin-right:1rem;
+}
+
+.settings_section_text {
+    width: 95%;
+    margin: auto auto;
+    padding: 0.5rem;
+    border: 1px solid #e0e0e0;
+    background-color: #fdfdfd;
+    color: #333;
+}
+
+.settings_section_text > ul,
+#setting-error-plugin-form > ul {
+    list-style: disc;
+    padding: 0 2rem;
+}

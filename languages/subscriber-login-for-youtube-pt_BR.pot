@@ -1,0 +1,220 @@
+# Copyright (C) 2021 Luiz C. M. de Aquino
+# This file is distributed under the same license as the Subscriber Login for YouTube plugin.
+msgid ""
+msgstr ""
+"Project-Id-Version: Subscriber Login for YouTube 1.0.0\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/subscriber-login-for-youtube\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2021-03-16T14:22:34+01:00\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"X-Generator: WP-CLI 2.4.0\n"
+"X-Domain: subscriber-login-for-youtube\n"
+
+#. Plugin Name of the plugin
+msgid "Subscriber Login for YouTube"
+msgstr ""
+
+#. Plugin URI of the plugin
+msgid "https://github.com/lcmaquino/subscriber-login-for-youtube"
+msgstr ""
+
+#. Description of the plugin
+msgid "YouTube Subscriber Login displays login button for YouTube."
+msgstr ""
+
+#. Author of the plugin
+msgid "Luiz C. M. de Aquino"
+msgstr ""
+
+#. Author URI of the plugin
+msgid "https://www.github.com/lcmaquino"
+msgstr ""
+
+#: admin/SlytSetting.php:81
+msgid "Settings"
+msgstr ""
+
+#: admin/SlytSetting.php:134
+#: admin/SlytSetting.php:507
+msgid "Google Client ID"
+msgstr ""
+
+#: admin/SlytSetting.php:138
+#: admin/SlytSetting.php:508
+msgid "Google Client secret"
+msgstr ""
+
+#: admin/SlytSetting.php:142
+#: admin/SlytSetting.php:509
+#: admin/SlytSetting.php:527
+msgid "Google Client redirect URI"
+msgstr ""
+
+#: admin/SlytSetting.php:174
+msgid "Google Client"
+msgstr ""
+
+#: admin/SlytSetting.php:186
+msgid "YouTube Channel ID"
+msgstr ""
+
+#: admin/SlytSetting.php:190
+msgid "YouTube Channel Title"
+msgstr ""
+
+#: admin/SlytSetting.php:194
+msgid "YouTube Channel URI"
+msgstr ""
+
+#: admin/SlytSetting.php:226
+msgid "YouTube"
+msgstr ""
+
+#: admin/SlytSetting.php:237
+msgid "User profile"
+msgstr ""
+
+#: admin/SlytSetting.php:252
+#: admin/SlytSetting.php:564
+msgid "Default role"
+msgstr ""
+
+#: admin/SlytSetting.php:276
+msgid "User registration"
+msgstr ""
+
+#: admin/SlytSetting.php:287
+msgid "Always show the Google account consent screen"
+msgstr ""
+
+#: admin/SlytSetting.php:311
+msgid "Login page"
+msgstr ""
+
+#: admin/SlytSetting.php:345
+msgid "YouTube Channel ID is required"
+msgstr ""
+
+#: admin/SlytSetting.php:350
+msgid "YouTube Channel Title is required"
+msgstr ""
+
+#. translators: %s it's a YouTube Channel URI.
+#: admin/SlytSetting.php:358
+msgid "YouTube Channel URI should be like %s"
+msgstr ""
+
+#: admin/SlytSetting.php:365
+msgid "Google Client ID is required"
+msgstr ""
+
+#: admin/SlytSetting.php:370
+msgid "Google Client secret is required"
+msgstr ""
+
+#. translators: %s it's the plugin slug.
+#: admin/SlytSetting.php:382
+msgid "Google Client redirect URI should be something like <code>%s</code>."
+msgstr ""
+
+#: admin/SlytSetting.php:450
+#: admin/SlytSetting.php:549
+msgid "Basic"
+msgstr ""
+
+#: admin/SlytSetting.php:452
+#: admin/SlytSetting.php:556
+msgid "Full"
+msgstr ""
+
+#. translators: %s: it's an URI address.
+#: admin/SlytSetting.php:483
+msgid "You can see your YouTube Channel ID in your <a href=\"%s\">advanced account settings</a> on YouTube."
+msgstr ""
+
+#. translators: %1$s: it's an URI address. %2$s, %3$s, and %4$s: those are Google Client OAuth 2.0 parameters.
+#: admin/SlytSetting.php:504
+msgid "Before using this plugin, you need to set up a Google project for web application in <a href=\"%1$s\">Google Console</a>. It's a Google requirement for users to login! The web application project will provide: \"%2$s\", \"%3$s\", and \"%4$s\"."
+msgstr ""
+
+#. translators: %1$s, %2$s, and %3$s: those are Google Client OAuth 2.0 scopes. %4$s: it's an URI address. %5$s: it's an Google support page for setting up OAuth 2.0.
+#: admin/SlytSetting.php:514
+msgid "Activate the \"YouTube Data API v3\" in your project and add the scopes <code>%1$s</code>, <code>%2$s</code>, and <code>%3$s</code> for its consent screen. See more details in <a href=\"%4$s\">%5$s</a>."
+msgstr ""
+
+#. translators: %1$s: it's an URI address. %2$s: it's the redirect URI for a Google Client OAuth 2.0.
+#: admin/SlytSetting.php:525
+msgid "Set your project \"%1$s\" to be something like <code>%2$s</code>."
+msgstr ""
+
+#. translators: %1s: the "Basic" option for "User profile".
+#: admin/SlytSetting.php:547
+msgid "The \"%s\" user profile stores: email and picture."
+msgstr ""
+
+#. translators: %1$s: the "Full" option for "User profile". %2$s: it's a scope for a Google Client OAuth 2.0.
+#: admin/SlytSetting.php:554
+msgid "The \"%s\" user profile stores: email, picture, full name, given name, family name, and locale. This option only works if the scope <code>%2$s</code> is added to the Google web application project."
+msgstr ""
+
+#. translators: %s: the "Default role" option.
+#: admin/SlytSetting.php:562
+msgid "When users login for the first time they will be registrated as the \"%s\"."
+msgstr ""
+
+#. translators: %s it's the filter slug.
+#: admin/SlytSetting.php:583
+msgid "Add the filter <code>%s</code> to custom your sign in button."
+msgstr ""
+
+#: admin/SlytSetting.php:590
+msgid "Example"
+msgstr ""
+
+#. translators: %s: the function.php template file.
+#: admin/SlytSetting.php:593
+msgid "Add to <code>%s</code> template file the following code."
+msgstr ""
+
+#. translators: %s it's the plugin name.
+#: admin/SlytSetting.php:618
+msgid "%s &bullet; Settings"
+msgstr ""
+
+#: admin/SlytSetting.php:626
+msgid "Save"
+msgstr ""
+
+#: admin/SlytUser.php:192
+msgid "Google account"
+msgstr ""
+
+#: admin/SlytUser.php:196
+#: admin/SlytUser.php:200
+msgid "Revoke access"
+msgstr ""
+
+#: admin/SlytUser.php:201
+msgid "Revoke the website access to this Google account."
+msgstr ""
+
+#: admin/SlytUser.php:203
+msgid "This Google account was revoked."
+msgstr ""
+
+#. translators: %s: it's an URI address.
+#: includes/SlytPlugin.php:223
+msgid "You need to subscribe to <a href=\"%1$s\">%2$s</a> for login."
+msgstr ""
+
+#: includes/SlytPlugin.php:282
+msgid "Sign in with YouTube"
+msgstr ""
+
+#: includes/SlytPlugin.php:287
+msgid "YouTube icon"
+msgstr ""
