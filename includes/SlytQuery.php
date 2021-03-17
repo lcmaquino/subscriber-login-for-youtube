@@ -79,4 +79,27 @@ class SlytQuery
     public function is_valid_action( $value = '' ) {
         return self::QUERY[self::ACTION_KEY] === $value;
     }
+
+    public function get( $key , $sanitizer = 'string' ) {
+        $value = isset( $_GET[$key] ) ? $this->sanitize( $_GET[$key], $sanitizer ) : null;
+        return $value;
+    }
+
+    /**
+     * Sanitizes a value.
+     *
+     * @param string $value
+     * @param string $type
+     * @return mixed
+     */
+    protected function sanitize( $value, $type ) {
+        switch ( $type ) {
+            case 'int' : 
+                $value = absint( $value );
+                break;
+            default:
+                $value = sanitize_text_field( $value );
+        }
+        return $value;
+    }
 }

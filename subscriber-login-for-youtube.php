@@ -3,7 +3,7 @@
  * Plugin Name: Subscriber Login for YouTube
  * Plugin URI: https://github.com/lcmaquino/subscriber-login-for-youtube
  * Description: YouTube Subscriber Login displays login button for YouTube.
- * Version: 1.0.0
+ * Version: 1.0.1
  * 
  * Requires PHP: 7.0
  * Requires at least: 4.9

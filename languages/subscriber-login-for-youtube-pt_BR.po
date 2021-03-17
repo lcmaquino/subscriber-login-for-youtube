@@ -5,8 +5,8 @@ msgstr ""
 "Project-Id-Version: Subscriber Login for YouTube\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/subscriber-login-"
 "for-youtube\n"
-"POT-Creation-Date: 2021-03-16T14:22:34+01:00\n"
-"PO-Revision-Date: 2021-03-16 10:22-0300\n"
+"POT-Creation-Date: 2021-03-17T23:58:24+01:00\n"
+"PO-Revision-Date: 2021-03-17 19:58-0300\n"
 "Last-Translator: Luiz C. M. de Aquino <contato@professoraquino.com.br>\n"
 "Language-Team: Luiz C. M. de Aquino <contato@professoraquino.com.br>\n"
 "Language: pt_BR\n"
@@ -43,97 +43,97 @@ msgstr "https://www.github.com/lcmaquino"
 msgid "Settings"
 msgstr "Configurações"
 
-#: admin/SlytSetting.php:134 admin/SlytSetting.php:507
+#: admin/SlytSetting.php:136 admin/SlytSetting.php:509
 msgid "Google Client ID"
 msgstr "ID do Cliente Google"
 
-#: admin/SlytSetting.php:138 admin/SlytSetting.php:508
+#: admin/SlytSetting.php:140 admin/SlytSetting.php:510
 msgid "Google Client secret"
 msgstr "Chave do Cliente Google"
 
-#: admin/SlytSetting.php:142 admin/SlytSetting.php:509
-#: admin/SlytSetting.php:527
+#: admin/SlytSetting.php:144 admin/SlytSetting.php:511
+#: admin/SlytSetting.php:529
 msgid "Google Client redirect URI"
 msgstr "Redirecionamento do Cliente Google"
 
-#: admin/SlytSetting.php:174
+#: admin/SlytSetting.php:176
 msgid "Google Client"
 msgstr "Cliente Google"
 
-#: admin/SlytSetting.php:186
+#: admin/SlytSetting.php:188
 msgid "YouTube Channel ID"
 msgstr "ID do Canal no YouTube"
 
-#: admin/SlytSetting.php:190
+#: admin/SlytSetting.php:192
 msgid "YouTube Channel Title"
 msgstr "Título do Canal no YouTube"
 
-#: admin/SlytSetting.php:194
+#: admin/SlytSetting.php:196
 msgid "YouTube Channel URI"
 msgstr "URI do Canal no YouTube"
 
-#: admin/SlytSetting.php:226
+#: admin/SlytSetting.php:228
 msgid "YouTube"
 msgstr "YouTube"
 
-#: admin/SlytSetting.php:237
+#: admin/SlytSetting.php:239
 msgid "User profile"
 msgstr "Imagem do perfil"
 
-#: admin/SlytSetting.php:252 admin/SlytSetting.php:564
+#: admin/SlytSetting.php:254 admin/SlytSetting.php:566
 msgid "Default role"
 msgstr "Papel padrão"
 
-#: admin/SlytSetting.php:276
+#: admin/SlytSetting.php:278
 msgid "User registration"
 msgstr "Registro do Usuário"
 
-#: admin/SlytSetting.php:287
+#: admin/SlytSetting.php:289
 msgid "Always show the Google account consent screen"
 msgstr "Sempre exibir a tela de consentimento da conta do Google"
 
-#: admin/SlytSetting.php:311
+#: admin/SlytSetting.php:313
 msgid "Login page"
 msgstr "Página de Login"
 
-#: admin/SlytSetting.php:345
+#: admin/SlytSetting.php:347
 msgid "YouTube Channel ID is required"
 msgstr "É necessário um ID do Canal no YouTube"
 
-#: admin/SlytSetting.php:350
+#: admin/SlytSetting.php:352
 msgid "YouTube Channel Title is required"
 msgstr "É necessário um Título do Canal no YouTube"
 
 #. translators: %s it's a YouTube Channel URI.
-#: admin/SlytSetting.php:358
+#: admin/SlytSetting.php:360
 msgid "YouTube Channel URI should be like %s"
 msgstr "URI do Canal no YouTube deve ser algo como %s"
 
-#: admin/SlytSetting.php:365
+#: admin/SlytSetting.php:367
 msgid "Google Client ID is required"
 msgstr "É necessário um ID do Cliente Google"
 
-#: admin/SlytSetting.php:370
+#: admin/SlytSetting.php:372
 msgid "Google Client secret is required"
 msgstr "É necessário uma chave do Cliente Google"
 
 #. translators: %s it's the plugin slug.
-#: admin/SlytSetting.php:382
+#: admin/SlytSetting.php:384
 msgid "Google Client redirect URI should be something like <code>%s</code>."
 msgstr ""
 "É necessário um URI válido como, por exemplo, <code>%s</code> para o URI de "
 "redirecionamento do Cliente Google."
 
-#: admin/SlytSetting.php:450 admin/SlytSetting.php:549
+#: admin/SlytSetting.php:452 admin/SlytSetting.php:551
 msgid "Basic"
 msgstr "Básico"
 
-#: admin/SlytSetting.php:452 admin/SlytSetting.php:556
+#: admin/SlytSetting.php:454 admin/SlytSetting.php:558
 msgid "Full"
 msgstr "Completo"
 
 #. translators: %s: it's an URI address.
-#: admin/SlytSetting.php:483
+#: admin/SlytSetting.php:485
 msgid ""
 "You can see your YouTube Channel ID in your <a href=\"%s\">advanced account "
 "settings</a> on YouTube."
@@ -142,7 +142,7 @@ msgstr ""
 "\">Configurações avançadas</a> no site do YouTube."
 
 #. translators: %1$s: it's an URI address. %2$s, %3$s, and %4$s: those are Google Client OAuth 2.0 parameters.
-#: admin/SlytSetting.php:504
+#: admin/SlytSetting.php:506
 msgid ""
 "Before using this plugin, you need to set up a Google project for web "
 "application in <a href=\"%1$s\">Google Console</a>. It's a Google "
@@ -155,7 +155,7 @@ msgstr ""
 "\" e \"%4$s\"."
 
 #. translators: %1$s, %2$s, and %3$s: those are Google Client OAuth 2.0 scopes. %4$s: it's an URI address. %5$s: it's an Google support page for setting up OAuth 2.0.
-#: admin/SlytSetting.php:514
+#: admin/SlytSetting.php:516
 msgid ""
 "Activate the \"YouTube Data API v3\" in your project and add the scopes "
 "<code>%1$s</code>, <code>%2$s</code>, and <code>%3$s</code> for its consent "
@@ -166,18 +166,18 @@ msgstr ""
 "consentimento. Vide mais detalhes em <a href=\"%4$s\">%5$s</a>."
 
 #. translators: %1$s: it's an URI address. %2$s: it's the redirect URI for a Google Client OAuth 2.0.
-#: admin/SlytSetting.php:525
+#: admin/SlytSetting.php:527
 msgid "Set your project \"%1$s\" to be something like <code>%2$s</code>."
 msgstr ""
 "Configure o \"%1$s\" do seu projeto para ser algo do tipo <code>%2$s</code>."
 
 #. translators: %1s: the "Basic" option for "User profile".
-#: admin/SlytSetting.php:547
+#: admin/SlytSetting.php:549
 msgid "The \"%s\" user profile stores: email and picture."
 msgstr "O  perfil \"%s\" armazena: e-mail e imagem do perfil."
 
 #. translators: %1$s: the "Full" option for "User profile". %2$s: it's a scope for a Google Client OAuth 2.0.
-#: admin/SlytSetting.php:554
+#: admin/SlytSetting.php:556
 msgid ""
 "The \"%s\" user profile stores: email, picture, full name, given name, "
 "family name, and locale. This option only works if the scope <code>%2$s</"
@@ -188,7 +188,7 @@ msgstr ""
 "%2$s</code> for adicionado ao projeto de aplicação web no Google Console."
 
 #. translators: %s: the "Default role" option.
-#: admin/SlytSetting.php:562
+#: admin/SlytSetting.php:564
 msgid ""
 "When users login for the first time they will be registrated as the \"%s\"."
 msgstr ""
@@ -196,27 +196,27 @@ msgstr ""
 "como \"%s\"."
 
 #. translators: %s it's the filter slug.
-#: admin/SlytSetting.php:583
+#: admin/SlytSetting.php:585
 msgid "Add the filter <code>%s</code> to custom your sign in button."
 msgstr ""
 "Adicione o filtro <code>%s</code> para personalizar o seu botão de \"Entrar "
 "com o YouTube\"."
 
-#: admin/SlytSetting.php:590
+#: admin/SlytSetting.php:592
 msgid "Example"
 msgstr "Exemplo"
 
 #. translators: %s: the function.php template file.
-#: admin/SlytSetting.php:593
+#: admin/SlytSetting.php:595
 msgid "Add to <code>%s</code> template file the following code."
 msgstr "Adicione o código a seguir no arquivo <code>%s</code> do tema."
 
 #. translators: %s it's the plugin name.
-#: admin/SlytSetting.php:618
+#: admin/SlytSetting.php:620
 msgid "%s &bullet; Settings"
 msgstr "%s &bullet; Configurações"
 
-#: admin/SlytSetting.php:626
+#: admin/SlytSetting.php:628
 msgid "Save"
 msgstr "Salvar"
 
@@ -236,17 +236,17 @@ msgstr "Revogar o acesso desse website à conta Google do usuário."
 msgid "This Google account was revoked."
 msgstr "O acesso a esta conta do Google foi revogado."
 
+#: includes/SlytPlugin.php:281
+msgid "Sign in with YouTube"
+msgstr "Entrar com o YouTube"
+
+#: includes/SlytPlugin.php:286
+msgid "YouTube icon"
+msgstr "Ícone do YouTube"
+
 #. translators: %s: it's an URI address.
-#: includes/SlytPlugin.php:223
+#: includes/SlytPlugin.php:306
 msgid "You need to subscribe to <a href=\"%1$s\">%2$s</a> for login."
 msgstr ""
 "Você precisa inscrever-se no canal <a href=\"%1$s\">%2$s</a> para entrar no "
 "site."
-
-#: includes/SlytPlugin.php:282
-msgid "Sign in with YouTube"
-msgstr "Entrar com o YouTube"
-
-#: includes/SlytPlugin.php:287
-msgid "YouTube icon"
-msgstr "Ícone do YouTube"

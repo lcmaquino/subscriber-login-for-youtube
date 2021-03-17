@@ -111,8 +111,10 @@ class SlytSetting
 	 * @return void
 	 */
 	public function admin_css() {
-		$path = plugins_url( $this->option->get_plugin_slug() . '/admin/css/style_settings.css' );
-		wp_enqueue_style( $this->option->get_plugin_slug() . '-admin', $path );
+        $path = 'admin/css/style_settings.css';
+        $src = plugins_url( $this->option->get_plugin_slug() . '/' .  $path);
+        $handle = $this->option->get_plugin_slug() . '-admin';
+        wp_enqueue_style( $handle, $src, array(), filemtime( SLYT_PATH . '/' . $path ) );
 	}
 
 	/**
@@ -325,9 +327,9 @@ class SlytSetting
 	 */
 	public function settings_sanitize( $input ) {
 		$errors = [];
-
+		$option = $this->option->all();
 		/* Sanitize */
-		$option_keys = array_keys( $this->option->all() );
+		$option_keys = array_keys( $option );
 		foreach($option_keys as $key) {
 			/* checkbox or radio input */
 			if ( $this->option->is_int( $key ) ) {
@@ -336,19 +338,19 @@ class SlytSetting
 
 			/* text input */
 			if ( $this->option->is_string( $key ) ) {
-				$input[$key] = isset( $input[$key] ) ? trim( $input[$key] ) : '';
+				$input[$key] = isset( $input[$key] ) ? sanitize_text_field( $input[$key] ) : '';
 			}
 		}
 
 		/* Validate */
 		if ( strlen($input['youtube_channel_id']) == 0) {
 			$errors[] = __('YouTube Channel ID is required', 'subscriber-login-for-youtube');
-			$input['youtube_channel_id'] = $this->option->get('youtube_channel_id');
+			$input['youtube_channel_id'] = $option['youtube_channel_id'];
 		}
 
 		if ( strlen($input['youtube_channel_title']) == 0) {
 			$errors[] = __('YouTube Channel Title is required', 'subscriber-login-for-youtube');
-			$input['youtube_channel_title'] = $this->option->get('youtube_channel_title');
+			$input['youtube_channel_title'] = $option['youtube_channel_title'];
 		}
 
 		if ( filter_var($input['youtube_channel_uri'], FILTER_VALIDATE_URL) === false ||
@@ -358,17 +360,17 @@ class SlytSetting
 				__('YouTube Channel URI should be like %s', 'subscriber-login-for-youtube'),
 				'https://www.youtube.com/MyAwsomeChannel'
 			);
-			$input['youtube_channel_uri'] = $this->option->get('youtube_channel_uri');
+			$input['youtube_channel_uri'] = $option['youtube_channel_uri'];
 		}
 
 		if ( strlen($input['google_client_id']) == 0) {
 			$errors[] = __('Google Client ID is required', 'subscriber-login-for-youtube');
-			$input['google_client_id'] = $this->option->get('google_client_id');
+			$input['google_client_id'] = $option['google_client_id'];
 		}
 
 		if ( strlen($input['google_client_secret']) == 0) {
 			$errors[] = __('Google Client secret is required', 'subscriber-login-for-youtube');
-			$input['google_client_secret'] = $this->option->get('google_client_secret');
+			$input['google_client_secret'] = $option['google_client_secret'];
 		}
 
 		$query_str = '?' . $this->query->get_login();
@@ -380,7 +382,7 @@ class SlytSetting
 			strpos( $input['google_client_redirect_uri'], $query_str ) === false) {
 			/* translators: %s it's the plugin slug. */
 			$errors[] = sprintf( __('Google Client redirect URI should be something like <code>%s</code>.', 'subscriber-login-for-youtube'), 'https:' . $site_url . $query_str );
-			$input['google_client_redirect_uri'] = $this->option->get('google_client_redirect_uri');
+			$input['google_client_redirect_uri'] = $option['google_client_redirect_uri'];
 		}
 
 		if(!empty($errors)) {

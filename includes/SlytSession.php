@@ -49,8 +49,8 @@ class SlytSession
      *
      * @return mixed
      */
-    public function get( $key = '', $return = null ) {
-        return !empty($key) && isset($_SESSION[$key]) ?  $_SESSION[$key] : $return;
+    public function get( $key = '', $sanitizer = 'string' ) {
+        return !empty( $key ) && isset( $_SESSION[$key] ) ?  $this->sanitize( $_SESSION[$key] , $sanitizer ) : null;
     }
 
     /**
@@ -58,16 +58,9 @@ class SlytSession
      *
      * @return mixed
      */
-    public function pop( $key = '', $default = null ) {
-        //Be carefull:
-        //It'll return $default if $_SESSION[$key] is equal
-        //to $default or it isn't set.
-        $value = $this->get( $key );
-        if ( $value ) {
-            $this->unset( $key );
-        }else{
-            $value = $default;
-        }
+    public function pop( $key = '', $sanitizer = 'string' ) {
+        $value = $this->get( $key, $sanitizer );
+        $this->unset( $key );
 
         return $value;
     }
@@ -80,6 +73,29 @@ class SlytSession
     public function state() {
         $code = md5(uniqid(rand(), true));
         $this->set('state', $code);
+
         return $code;
+    }
+
+    /**
+     * Sanitizes a value.
+     *
+     * @param string $value
+     * @param string $type
+     * @return mixed
+     */
+    protected function sanitize( $value, $type ) {
+        switch ( $type ) {
+            case 'int' : 
+                $value = absint( $value );
+                break;
+            case 'bool' : 
+                $value = is_bool( $value );
+                break;
+            default:
+                $value = sanitize_text_field( $value );
+        }
+        
+        return $value;
     }
 }

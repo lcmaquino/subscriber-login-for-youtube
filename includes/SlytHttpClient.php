@@ -3,33 +3,6 @@
 class SlytHttpClient
 {
     /**
-     * cURL handle.
-     *
-     * @var resource
-     */
-    protected $ch;
-
-    /**
-     * Initializes a new session and set the $ch cURL handle. 
-     *
-     * @return void
-     */
-    protected function init()
-    {
-        $this->ch = curl_init();
-    }
-
-    /**
-     * Close a cURL session. 
-     *
-     * @return void
-     */
-    protected function close()
-    {
-        curl_close($this->ch);
-    }
-
-    /**
      * Do a GET http request.
      *
      * @param string $url
@@ -38,16 +11,10 @@ class SlytHttpClient
      */
     public function get($url = '', $query = [])
     {
-        $this->init();
+        $url = $url . '?' . http_build_query($query);
+        $response = wp_remote_get( $url );
 
-        $protocol = strpos($url, 'https') === 0 ? 'https' : 'http';
-
-        curl_setopt($this->ch, CURLOPT_URL, $url . '?' . http_build_query($query));
-
-        if(!empty($header)) {
-            curl_setopt($this->ch, CURLOPT_HTTPHEADER, $header);
-        }
-        return $this->curlToJson($protocol);
+        return $this->responseToJson( $response );
     }
 
     /**
@@ -55,50 +22,32 @@ class SlytHttpClient
      *
      * @param string $url
      * @param array $query
-     * @return array
+     * @return array|null
      */
     public function post($url = '', $query = [])
     {
-        $this->init();
+        $args = array(
+            'body' => $query,
+            'headers' => array(
+                'Content-Type' => 'application/x-www-form-urlencoded',
+                'Content-Length' => strlen(http_build_query($query)),
+            )
+        );
+        $response = wp_remote_post( $url, $args );
 
-        $protocol = strpos($url, 'https') === 0 ? 'https' : 'http';
-
-        curl_setopt($this->ch, CURLOPT_POST, 1);
-        curl_setopt($this->ch, CURLOPT_URL, $url);
-        curl_setopt($this->ch, CURLOPT_POSTFIELDS, http_build_query($query));
-        curl_setopt($this->ch, CURLOPT_HTTPHEADER, [
-            'Content-Type: application/x-www-form-urlencoded',
-            'Content-Length: ' . strlen(http_build_query($query)),
-        ]);
-
-        return $this->curlToJson($protocol);
+        return $this->responseToJson( $response );
     }
 
     /**
-     * Perform a cURL session and return the result as an JSON
-     * associative array.
+     * Get the response body and return as an array.
      *
      * @param string $protocol
      * @return array|null
      */
-    private function curlToJson($protocol = 'http') 
+    private function responseToJson( $response ) 
     {
-        if ($protocol === 'http') {
-            curl_setopt($this->ch, CURLOPT_PORT, 80);
-        } else {
-            curl_setopt($this->ch, CURLOPT_PORT, 443);
-        }
-
-        curl_setopt($this->ch, CURLOPT_RETURNTRANSFER, 1);
-        $rawData = curl_exec($this->ch);
-
-        if (curl_errno($this->ch)) {
-            $rawData = null;
-        }
-
-        $this->close();
-
-        $jsonData = empty($rawData) ? null : json_decode($rawData, true);
+        $rawData = wp_remote_retrieve_body( $response );
+        $jsonData = empty( $rawData ) ? null : json_decode($rawData, true);
         
         return $jsonData;
     }

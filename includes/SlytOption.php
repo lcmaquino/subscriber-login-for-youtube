@@ -7,7 +7,7 @@ class SlytOption
      * 
      * @var string
      */
-    protected const PLUGIN_VERSION = '1.0.0';
+    protected const PLUGIN_VERSION = '1.0.1';
 
     /**
      * Plugin name.
@@ -32,7 +32,7 @@ class SlytOption
     protected const OPTION_NAME = 'subscriber_login_for_youtube';
 
     /**
-     * Default value for the options.
+     * Default value for the option.
      * 
      * @var array
     */
@@ -49,11 +49,11 @@ class SlytOption
     );
 
     /**
-     * The options stored in WP db.
+     * The option stored in WP db.
      *
      * @var array
      */
-    protected $options;
+    protected $option;
 
     /**
      * Instance of SlytOption.
@@ -61,11 +61,11 @@ class SlytOption
      * @return void
      */
     public function __constructor() {
-        $this->options = get_option( self::OPTION_NAME );
+        $this->option = get_option( self::OPTION_NAME );
     }
 
     /**
-     * Set the options as the default values.
+     * Set the option as the default values.
      *
      * @return void
      */
@@ -74,27 +74,32 @@ class SlytOption
     }
 
     /**
-     * Get the options stored in WP db.
+     * Get the option stored in WP db.
      *
      * @return array
      */
     public function all() {
-        $this->options = get_option( self::OPTION_NAME );
-        return $this->options;
+        $this->option = get_option( self::OPTION_NAME );
+        foreach( self::DEFAULT as $key => $value ) {
+            $value = isset( $this->option[$key] ) ? $this->option[$key] : $value;
+            $this->option[$key] = $value;
+        }
+
+        return $this->option;
     }
 
     /**
-     * Update the options.
+     * Update the option.
      *
-     * @param array $options
+     * @param array $option
      * @return bool
      */
-    public function update( $options = [] ) {
-        return current_user_can( 'manage_options' ) && update_option( self::OPTION_NAME, $options, false );
+    public function update( $option = [] ) {
+        return current_user_can( 'manage_options' ) && update_option( self::OPTION_NAME, $option, false );
     }
 
     /**
-     * Delete the options.
+     * Delete the option.
      *
      * @return bool
      */
@@ -110,8 +115,9 @@ class SlytOption
      * @return mixed
      */
     public function get( $key = '', $default = null ) {
-        $options = $this->all();
-        return ( $this->exists( $key ) && isset( $options[$key] ) ) ? $options[$key] : $default;
+        $option = $this->all();
+
+        return $this->exists( $key ) ? $option[$key] : $default;
     }
 
     /**
@@ -122,9 +128,10 @@ class SlytOption
      * @return bool
      */
     public function set( $key = '', $value = null ) {
-        $options = $this->all();
-        $options[$key] = $value;
-        return $this->update( $options );
+        $option = $this->all();
+        $option[$key] = $value;
+        
+        return $this->update( $option );
     }
 
     /**
@@ -174,7 +181,7 @@ class SlytOption
     }
 
     /**
-     * Get the default options.
+     * Get the default option.
      *
      * @return array
      */
@@ -183,11 +190,11 @@ class SlytOption
     }
 
     /**
-     * Get the options stored in WP db.
+     * Get the option stored in WP db.
      *
      * @return array
      */
-    public function get_options() {
+    public function get_option() {
         return $this->all();
     }
 
@@ -197,11 +204,12 @@ class SlytOption
      * @return array
      */
     public function get_oauth2_config(){
+        $option = $this->all();
 		$config = [
-			'client_id' => $this->get('google_client_id'),
-			'client_secret' => $this->get('google_client_secret'),
-			'redirect_uri' => $this->get('google_client_redirect_uri'),
-			'youtube_channel_id' => $this->get('youtube_channel_id'),
+			'client_id' => $option['google_client_id'],
+			'client_secret' => $option['google_client_secret'],
+			'redirect_uri' => $option['google_client_redirect_uri'],
+			'youtube_channel_id' => $option['youtube_channel_id']
 		];
 
 		return $config;
@@ -213,10 +221,11 @@ class SlytOption
      * @return array
      */
     public function get_youtube_channel_info(){
+        $option = $this->all();
 		$info = [
-			'youtube_channel_id' => $this->get('youtube_channel_id'),
-			'youtube_channel_title' => $this->get('youtube_channel_title'),
-			'youtube_channel_uri' => $this->get('youtube_channel_uri')
+            'youtube_channel_id' => $option['youtube_channel_id'],
+			'youtube_channel_title' => $option['youtube_channel_title'],
+			'youtube_channel_uri' => $option['youtube_channel_uri']
 		];
 
 		return $info;

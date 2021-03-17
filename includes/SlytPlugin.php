@@ -87,7 +87,7 @@ class SlytPlugin
 
         /** Add actions. */
         add_action( 'init', array( $this, 'parse_query' ) );
-        add_action( 'login_head', array( $this, 'login_head' ) );
+        add_action( 'login_enqueue_scripts', array( $this, 'login_enqueue_scripts' ) );
         add_action( 'delete_user', array( $this->user, 'before_delete' ) );
         add_action( 'show_user_profile', array( $this->user, 'edit_profile' ) );
         add_action( 'edit_user_profile', array( $this->user, 'edit_profile' ) );
@@ -201,11 +201,11 @@ class SlytPlugin
      *
      * @return void
      */
-    public function parse_query( ) {
+    public function parse_query( ) {        
         if ( $this->run_login() ) {
-            $code = isset( $_GET['code'] ) ? $_GET['code'] : null;
+            $code = $this->query->get( 'code' );
             if ( !empty($code) ) {
-                $state = isset( $_GET['state'] ) ? $_GET['state'] : null;;
+                $state = $this->query->get( 'state' );
                 $session_state = $this->session->pop( 'state' );
                 $yt_user = $this->yt->user($code, $state, $session_state);
                 if( $yt_user ) {
@@ -218,10 +218,7 @@ class SlytPlugin
                             $wp_user = $this->user->update( $yt_user );
                         }
                     }else{
-                        $youtube_channel = $this->option->get_youtube_channel_info();
-                        /* translators: %s: it's an URI address. */
-                        $message = sprintf( __( "You need to subscribe to <a href=\"%1\$s\">%2\$s</a> for login.", 'subscriber-login-for-youtube' ), $youtube_channel['youtube_channel_uri'], $youtube_channel['youtube_channel_title'] );
-                        $this->session->set( $this->option->add_name( 'user_not_subscribed' ), $message );
+                        $this->session->set( $this->option->add_name( 'user_not_subscribed' ), true );
                         $this->yt->revokeToken( $yt_user->getToken() );
                     }
     
@@ -235,8 +232,8 @@ class SlytPlugin
 
         if ( is_user_logged_in() ) {
             $this->check_subscription();
-            $action_value = isset( $_GET[$this->query->get_action_key()] ) ? $_GET[$this->query->get_action_key()] : null;
-            $user_id = isset( $_GET['user_id'] ) ? $_GET['user_id'] : 0;
+            $action_value = $this->query->get( $this->query->get_action_key() );
+            $user_id = $this->query->get( 'user_id', 'int' );
             if ( $this->query->is_valid_action( $action_value ) &&
                 ( $user_id == get_current_user_id() || current_user_can( 'edit_users' ) )
                 ) {
@@ -246,14 +243,16 @@ class SlytPlugin
     }
 
     /**
-     * Action fired in the login page header after scripts are enqueued.
+     * Enqueue scripts and styles for the login page.
      *
      * @return void
      */
-    public function login_head() {
-        $css = $this->asset('public/css/style_login.css', true);
+    public function login_enqueue_scripts() {
+        $path = 'public/css/style_login.css';
+        $src = $this->asset( $path, true );
         $slug = $this->option->get_plugin_slug();
-        echo "<link rel='stylesheet' id='{$slug}-public-css' href='{$css}' media='all' />";
+        $handle = $slug . '-public';
+        wp_enqueue_style( $handle, $src, array(), filemtime( SLYT_PATH . '/' . $path ) );
     }
 
     /**
@@ -299,9 +298,17 @@ class SlytPlugin
      */
     public function get_errors( $return = false ){
         $html = '';
-        $error_msg = $this->session->pop( $this->option->add_name( 'user_not_subscribed' ) );
-        if ( !empty( $error_msg ) ) {
-            $html = '<div class="login message">' . wpautop( $error_msg ) . '</div>';
+        $user_not_subscribed = $this->session->pop( $this->option->add_name( 'user_not_subscribed' ), 'bool' );
+        if ( $user_not_subscribed ) {
+            $youtube_channel = $this->option->get_youtube_channel_info();
+            $message = sprintf(
+                /* translators: %s: it's an URI address. */
+                __( "You need to subscribe to <a href=\"%1\$s\">%2\$s</a> for login.", 'subscriber-login-for-youtube' ),
+                $youtube_channel['youtube_channel_uri'],
+                $youtube_channel['youtube_channel_title']
+            );
+            $message = wp_kses_post( wpautop( $message ) );
+            $html = '<div class="login message">' . $message . '</div>';
         }
 
         if ( $return ) {
@@ -337,7 +344,7 @@ class SlytPlugin
      * @return bool
      */
     public function run_login(){
-        $login_value = isset( $_GET[$this->query->get_login_key()] ) ? $_GET[$this->query->get_login_key()] : null;
+        $login_value = $this->query->get( $this->query->get_login_key() );
 
         return ( !is_user_logged_in() && $this->query->is_valid_login( $login_value ) );
     }

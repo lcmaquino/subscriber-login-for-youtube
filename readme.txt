@@ -2,8 +2,10 @@
 Contributors: lcmaquino
 Tags: oauth2, youtube-api-v3, youtube sign in
 Donate link: https://www.professoraquino.com.br/ajude
-Requires PHP: 7.0
 Requires at least: 4.9
+Tested up to: 5.7
+Stable tag: 1.0.1
+Requires PHP: 7.0
 License: GPLv3 or later
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
