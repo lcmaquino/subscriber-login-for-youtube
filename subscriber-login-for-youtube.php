@@ -1,17 +1,17 @@
 <?php
 /*
  * Plugin Name: Subscriber Login for YouTube
- * Plugin URI: https://github.com/lcmaquino/subscriber-login-for-youtube
+ * Plugin URI: https://wordpress.org/plugins/subscriber-login-for-youtube/
  * Description: YouTube Subscriber Login displays login button for YouTube.
- * Version: 1.0.1
+ * Version: 1.0.2
  * 
  * Requires PHP: 7.0
  * Requires at least: 4.9
  * 
  * Author: Luiz C. M. de Aquino
  * Author URI: https://www.github.com/lcmaquino
- * License: GPL v3 or later
- * License URI: https://www.gnu.org/licenses/gpl-3.0.html
+ * License: GPLv2 or later
+ * License URI: http://www.gnu.org/licenses/gpl-2.0.html
  * 
  * Text Domain: subscriber-login-for-youtube
  * Domain Path: /languages
