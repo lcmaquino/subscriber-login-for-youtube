@@ -7,7 +7,7 @@ class SlytOption
      * 
      * @var string
      */
-    protected const PLUGIN_VERSION = '1.0.1';
+    protected const PLUGIN_VERSION = '1.0.3';
 
     /**
      * Plugin name.

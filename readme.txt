@@ -71,6 +71,9 @@ After you activated the plugin, then the plugin will automatically:
 
 == Changelog ==
 
+= 1.0.3 =
+* Update version on `includes/SlytOption.php`.
+
 = 1.0.2 =
 * Add assets directory for release on WordPress Plugin Directory.
 * Change plugin license to GPLv2 or later to match with WordPress license.
