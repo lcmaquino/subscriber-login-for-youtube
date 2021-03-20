@@ -69,6 +69,19 @@ After you activated the plugin, then the plugin will automatically:
 2. "Revoke access" link on the WordPress profile page.
 3. Subscriber Login for YouTube on the WordPress Settings page.
 
+== Changelog ==
+
+= 1.0.2 =
+* Add assets directory for release on WordPress Plugin Directory.
+* Change plugin license to GPLv2 or later to match with WordPress license.
+* Update readme.txt.
+
+= 1.0.1 =
+* Fix issues in WordPress Plugin Review #1.
+
+= 1.0.0 =
+* Initial plugin version.
+
 ## License
 
 Subscriber Login for YouTube is open-sourced software licensed under the [GPL v2.0 or later](https://github.com/lcmaquino/subscriber-login-for-youtube/blob/main/LICENSE).
