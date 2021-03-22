@@ -1,8 +1,7 @@
 <?php
+namespace Lcmaquino\SubscriberLoginForYouTube\Site;
 
-require_once( SLYT_INCLUDES_PATH . '/SlytGoogleOauth2.php' );
-
-class SlytYouTubeOauth2 extends SlytGoogleOauth2
+class YouTubeOauth2 extends GoogleOauth2
 {
     /**
      * The YouTube channel ID.
@@ -13,7 +12,7 @@ class SlytYouTubeOauth2 extends SlytGoogleOauth2
 
     /**
      * Create a new YouTubeChannelManager instance.
-     * 
+     *
      * @param  array  $config
      * @return void
      */
@@ -25,7 +24,7 @@ class SlytYouTubeOauth2 extends SlytGoogleOauth2
             'email',
             'https://www.googleapis.com/auth/youtube.readonly'
         ];
-        $this->httpClient = new SlytHttpClient();
+        $this->httpClient = new HttpClient();
     }
 
     /**
@@ -34,7 +33,8 @@ class SlytYouTubeOauth2 extends SlytGoogleOauth2
      * @param string $channelId
      * @return $this
      */
-    public function setChannelId($channelId = '') {
+    public function setChannelId($channelId = '')
+    {
         $this->channelId = $channelId;
         return $this;
     }
@@ -44,7 +44,8 @@ class SlytYouTubeOauth2 extends SlytGoogleOauth2
      *
      * @return string
      */
-    public function getChannelId() {
+    public function getChannelId()
+    {
         return $this->channelId;
     }
 
@@ -63,7 +64,8 @@ class SlytYouTubeOauth2 extends SlytGoogleOauth2
      * @param array  $config
      * @return $this
      */
-    public function setConfig($config = []){
+    public function setConfig($config = [])
+    {
         $this->clientId = $config['client_id'];
         $this->clientSecret = $config['client_secret'];
         $this->redirectUri = $config['redirect_uri'];
@@ -76,7 +78,8 @@ class SlytYouTubeOauth2 extends SlytGoogleOauth2
      * channel ID.
      * @return void
      */
-    public function getConfig(){
+    public function getConfig()
+    {
         return [
             'client_id' => $this->clientId,
             'client_secret' => $this->clientSecret,
@@ -114,13 +117,13 @@ class SlytYouTubeOauth2 extends SlytGoogleOauth2
 
     /**
      * Get the subscriptions reponse for the given token.
-     * 
+     *
      * @param string $token
      * @return array|null
      */
     protected function getSubscriptionsResponse($token = '')
     {
-        $response = (empty($token) || empty($this->channelId)) ? null : 
+        $response = (empty($token) || empty($this->channelId)) ? null :
             $this->getHttpClient()->get(
                 $this->getSubscriptionsUrl(),
                 $this->getSubscriptionsFields($token)
@@ -131,18 +134,19 @@ class SlytYouTubeOauth2 extends SlytGoogleOauth2
 
     /**
      * Check if an user is subscribed on the given YouTube channel.
-     * 
+     *
      * Returns true if the user is subscribed and false otherwise.
      * If $token is empty and there is a cached $this->user, then this
      * method will use their token.
      * Returns null if some error has happened while trying to get user's
      * subscriptions.
-     * 
+     *
      * @param string $token
      * @param string $channelId
      * @return boolean|null
      */
-    public function isUserSubscribed($token = '') {
+    public function isUserSubscribed($token = '')
+    {
         $token = empty($token) ? (empty($this->user) ? null : $this->user->token) : $token;
         $response = $this->getSubscriptionsResponse($token);
 

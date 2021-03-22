@@ -1,11 +1,29 @@
 <?php
+namespace Lcmaquino\SubscriberLoginForYouTube\Site;
 
-class SlytGoogleUser
+class GoogleUser
 {
+    /**
+     * The map associating the Google API Data raw keys with the GoogleUser
+     * attributes.
+     *
+     * @var array
+     */
+    const MAP_KEYS = array(
+        'sub' => 'sub',
+        'name' => 'name',
+        'given_name' => 'givenName',
+        'family_name' => 'familyName',
+        'locale' => 'locale',
+        'email' => 'email',
+        'email_verified' => 'emailVerified',
+        'picture' =>  'picture'
+    );
+
     /**
      * The unique Google identifier for the user.
      *
-     * @var mixed
+     * @var string
      */
     protected $sub;
 
@@ -21,14 +39,14 @@ class SlytGoogleUser
      *
      * @var string
      */
-    protected $given_name;
+    protected $givenName;
 
     /**
      * The user's family name.
      *
      * @var string
      */
-    protected $family_name;
+    protected $familyName;
 
     /**
      * The user's locale.
@@ -49,7 +67,7 @@ class SlytGoogleUser
      *
      * @var boolean
      */
-    protected $email_verified;
+    protected $emailVerified;
 
     /**
      * The user's profile picture URL.
@@ -70,14 +88,14 @@ class SlytGoogleUser
      *
      * @var string
      */
-    protected $refresh_token;
+    protected $refreshToken;
 
     /**
      * The number of seconds the access token is valid for.
      *
      * @var int
      */
-    protected $expires_in;
+    protected $expiresIn;
 
     /**
      * The user's raw attributes.
@@ -86,9 +104,19 @@ class SlytGoogleUser
      */
     protected $rawAttributes;
 
-    public function __construct () {
+    public function __construct()
+    {
+        $this->sub = null;
+        $this->name = '';
+        $this->givenName = '';
+        $this->familyName = '';
+        $this->locale = '';
+        $this->email = null;
+        $this->emailVerified = 0;
+        $this->picture = null;
         $this->token = null;
-        $this->refresh_token = null;
+        $this->refreshToken = null;
+        $this->expiresIn = null;
         $this->rawAttributes = array();
     }
 
@@ -119,7 +147,7 @@ class SlytGoogleUser
      */
     public function getGivenName()
     {
-        return $this->given_name;
+        return $this->givenName;
     }
 
     /**
@@ -129,7 +157,7 @@ class SlytGoogleUser
      */
     public function getFamilyName()
     {
-        return $this->family_name;
+        return $this->familyName;
     }
 
     /**
@@ -149,7 +177,7 @@ class SlytGoogleUser
      */
     public function getEmailVerified()
     {
-        return $this->email_verified;
+        return $this->emailVerified;
     }
 
     /**
@@ -199,7 +227,7 @@ class SlytGoogleUser
      */
     public function getRefreshToken()
     {
-        return $this->refresh_token;
+        return $this->refreshToken;
     }
 
     /**
@@ -209,7 +237,7 @@ class SlytGoogleUser
      */
     public function getExpiresIn()
     {
-        return $this->expires_in;
+        return $this->expiresIn;
     }
 
     /**
@@ -221,17 +249,18 @@ class SlytGoogleUser
     public function setRaw(array $rawAttributes)
     {
         $this->rawAttributes = $rawAttributes;
+        $this->map($rawAttributes);
 
         return $this;
     }
 
-     /**
-     * Set the token on the user.
-     *
-     * @param  string  $token
-     * @return $this
-     */
-    public function setToken($token)
+    /**
+    * Set the token on the user.
+    *
+    * @param  string  $token
+    * @return $this
+    */
+    public function setToken(string $token)
     {
         $this->token = $token;
 
@@ -244,9 +273,9 @@ class SlytGoogleUser
      * @param  string  $refreshToken
      * @return $this
      */
-    public function setRefreshToken($refreshToken)
+    public function setRefreshToken(string $refreshToken)
     {
-        $this->refresh_token = $refreshToken;
+        $this->refreshToken = $refreshToken;
 
         return $this;
     }
@@ -259,7 +288,7 @@ class SlytGoogleUser
      */
     public function setExpiresIn($expiresIn)
     {
-        $this->expires_in = $expiresIn;
+        $this->expiresIn = $expiresIn;
 
         return $this;
     }
@@ -267,16 +296,17 @@ class SlytGoogleUser
     /**
      * Map the given array onto the user's properties.
      *
-     * @param  array  $attributes
+     * @param  array  $rawAttributes
      * @return $this
      */
-    public function map(array $attributes)
+    public function map(array $rawAttributes)
     {
-        foreach ($attributes as $key => $value) {
-            $this->{$key} = $value;
+        foreach ($rawAttributes as $rawKey => $value) {
+            if (isset(self::MAP_KEYS[$rawKey])) {
+                $key = self::MAP_KEYS[$rawKey];
+                $this->{$key} = $value;
+            }
         }
-
-        $this->rawAttributes = array_merge( $this->rawAttributes, $attributes );
 
         return $this;
     }
@@ -284,10 +314,10 @@ class SlytGoogleUser
     /**
      * Determine if the given raw user attribute exists.
      *
-     * @param  string  $offset
+     * @param  string $offset
      * @return bool
      */
-    public function offsetExists($offset)
+    public function offsetExists(string $offset)
     {
         return array_key_exists($offset, $this->rawAttributes);
     }
@@ -298,7 +328,7 @@ class SlytGoogleUser
      * @param  string  $offset
      * @return mixed
      */
-    public function offsetGet($offset)
+    public function offsetGet(string $offset)
     {
         return $this->rawAttributes[$offset];
     }
@@ -310,7 +340,7 @@ class SlytGoogleUser
      * @param  mixed  $value
      * @return void
      */
-    public function offsetSet($offset, $value)
+    public function offsetSet(string $offset, $value)
     {
         $this->rawAttributes[$offset] = $value;
     }
@@ -321,7 +351,7 @@ class SlytGoogleUser
      * @param  string  $offset
      * @return void
      */
-    public function offsetUnset($offset)
+    public function offsetUnset(string $offset)
     {
         unset($this->rawAttributes[$offset]);
     }

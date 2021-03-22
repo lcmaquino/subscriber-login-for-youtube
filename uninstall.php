@@ -1,10 +1,10 @@
 <?php
 // If uninstall not called from WordPress, then exit.
-if ( ! defined( 'WP_UNINSTALL_PLUGIN' ) ) {
+if (! defined('WP_UNINSTALL_PLUGIN')) {
     exit();
 }
 
-if ( current_user_can( 'delete_plugins' ) && current_user_can( 'manage_options' ) ) {
+if (current_user_can('delete_plugins') && current_user_can('manage_options')) {
     //Plugin slug.
     $slug = 'subscriber_login_for_youtube';
     
@@ -22,7 +22,7 @@ if ( current_user_can( 'delete_plugins' ) && current_user_can( 'manage_options' 
     );
 
     //Delete options.
-    delete_option( $slug );
+    delete_option($slug);
 
     //Destroy PHP Session.
     session_destroy();

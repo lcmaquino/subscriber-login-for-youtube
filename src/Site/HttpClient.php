@@ -1,6 +1,7 @@
 <?php
+namespace Lcmaquino\SubscriberLoginForYouTube\Site;
 
-class SlytHttpClient
+class HttpClient
 {
     /**
      * Do a GET http request.
@@ -12,9 +13,9 @@ class SlytHttpClient
     public function get($url = '', $query = [])
     {
         $url = $url . '?' . http_build_query($query);
-        $response = wp_remote_get( $url );
+        $response = wp_remote_get($url);
 
-        return $this->responseToJson( $response );
+        return $this->responseToJson($response);
     }
 
     /**
@@ -33,9 +34,9 @@ class SlytHttpClient
                 'Content-Length' => strlen(http_build_query($query)),
             )
         );
-        $response = wp_remote_post( $url, $args );
+        $response = wp_remote_post($url, $args);
 
-        return $this->responseToJson( $response );
+        return $this->responseToJson($response);
     }
 
     /**
@@ -44,10 +45,10 @@ class SlytHttpClient
      * @param string $protocol
      * @return array|null
      */
-    private function responseToJson( $response ) 
+    private function responseToJson($response)
     {
-        $rawData = wp_remote_retrieve_body( $response );
-        $jsonData = empty( $rawData ) ? null : json_decode($rawData, true);
+        $rawData = wp_remote_retrieve_body($response);
+        $jsonData = empty($rawData) ? null : json_decode($rawData, true);
         
         return $jsonData;
     }

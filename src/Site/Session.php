@@ -1,14 +1,16 @@
-<?php 
+<?php
+namespace Lcmaquino\SubscriberLoginForYouTube\Site;
 
-class SlytSession
+class Session
 {
     /**
      * Start a PHP session.
      *
      * @return void
      */
-    public static function start() {
-        if( session_status() !== PHP_SESSION_ACTIVE ){
+    public static function start()
+    {
+        if (session_status() !== PHP_SESSION_ACTIVE) {
             session_start();
         }
     }
@@ -18,7 +20,8 @@ class SlytSession
      *
      * @return void
      */
-    public static function destroy() {
+    public static function destroy()
+    {
         session_destroy();
     }
 
@@ -27,7 +30,8 @@ class SlytSession
      *
      * @return void
      */
-    public function set( $key = '', $value = null ) {
+    public function set($key = '', $value = null)
+    {
         if (!empty($key)) {
             $_SESSION[$key] = $value;
         }
@@ -38,9 +42,10 @@ class SlytSession
      *
      * @return void
      */
-    public function unset( $key = '' ) {
-        if ( !empty($key) ) {
-            unset( $_SESSION[$key] );
+    public function unset($key = '')
+    {
+        if (!empty($key)) {
+            unset($_SESSION[$key]);
         }
     }
 
@@ -49,8 +54,9 @@ class SlytSession
      *
      * @return mixed
      */
-    public function get( $key = '', $sanitizer = 'string' ) {
-        return !empty( $key ) && isset( $_SESSION[$key] ) ?  $this->sanitize( $_SESSION[$key] , $sanitizer ) : null;
+    public function get($key = '', $sanitizer = 'string')
+    {
+        return !empty($key) && isset($_SESSION[$key]) ?  $this->sanitize($_SESSION[$key], $sanitizer) : null;
     }
 
     /**
@@ -58,9 +64,10 @@ class SlytSession
      *
      * @return mixed
      */
-    public function pop( $key = '', $sanitizer = 'string' ) {
-        $value = $this->get( $key, $sanitizer );
-        $this->unset( $key );
+    public function pop($key = '', $sanitizer = 'string')
+    {
+        $value = $this->get($key, $sanitizer);
+        $this->unset($key);
 
         return $value;
     }
@@ -70,7 +77,8 @@ class SlytSession
      *
      * @return string
      */
-    public function state() {
+    public function state()
+    {
         $code = md5(uniqid(rand(), true));
         $this->set('state', $code);
 
@@ -84,16 +92,17 @@ class SlytSession
      * @param string $type
      * @return mixed
      */
-    protected function sanitize( $value, $type ) {
-        switch ( $type ) {
-            case 'int' : 
-                $value = absint( $value );
+    protected function sanitize($value, $type)
+    {
+        switch ($type) {
+            case 'int':
+                $value = absint($value);
                 break;
-            case 'bool' : 
-                $value = is_bool( $value );
+            case 'bool':
+                $value = is_bool($value);
                 break;
             default:
-                $value = sanitize_text_field( $value );
+                $value = sanitize_text_field($value);
         }
         
         return $value;

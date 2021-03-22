@@ -5,8 +5,8 @@ msgstr ""
 "Project-Id-Version: Subscriber Login for YouTube\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/subscriber-login-"
 "for-youtube\n"
-"POT-Creation-Date: 2021-03-17T23:58:24+01:00\n"
-"PO-Revision-Date: 2021-03-17 19:58-0300\n"
+"POT-Creation-Date: 2021-03-22T13:37:58+01:00\n"
+"PO-Revision-Date: 2021-03-22 09:38-0300\n"
 "Last-Translator: Luiz C. M. de Aquino <contato@professoraquino.com.br>\n"
 "Language-Team: Luiz C. M. de Aquino <contato@professoraquino.com.br>\n"
 "Language: pt_BR\n"
@@ -23,117 +23,119 @@ msgid "Subscriber Login for YouTube"
 msgstr "Subscriber Login for YouTube"
 
 #. Plugin URI of the plugin
-msgid "https://github.com/lcmaquino/subscriber-login-for-youtube"
-msgstr "https://github.com/lcmaquino/subscriber-login-for-youtube"
+msgid "https://wordpress.org/plugins/subscriber-login-for-youtube/"
+msgstr "https://wordpress.org/plugins/subscriber-login-for-youtube/"
 
 #. Description of the plugin
-msgid "YouTube Subscriber Login displays login button for YouTube."
+msgid ""
+"Subscriber Login for YouTube enables user sign in with their YouTube account."
 msgstr ""
-"YouTube Subscriber Login exibe um botão de login com a conta do YouTube."
+"Subscriber Login for YouTube permite que o usuário faça login com sua conta "
+"do YouTube."
 
 #. Author of the plugin
 msgid "Luiz C. M. de Aquino"
 msgstr "Luiz C. M. de Aquino"
 
 #. Author URI of the plugin
-msgid "https://www.github.com/lcmaquino"
-msgstr "https://www.github.com/lcmaquino"
+msgid "https://www.professoraquino.com.br/"
+msgstr "https://www.professoraquino.com.br/"
 
-#: admin/SlytSetting.php:81
+#: src/Admin/Setting.php:89
 msgid "Settings"
 msgstr "Configurações"
 
-#: admin/SlytSetting.php:136 admin/SlytSetting.php:509
+#: src/Admin/Setting.php:147 src/Admin/Setting.php:529
 msgid "Google Client ID"
 msgstr "ID do Cliente Google"
 
-#: admin/SlytSetting.php:140 admin/SlytSetting.php:510
+#: src/Admin/Setting.php:151 src/Admin/Setting.php:530
 msgid "Google Client secret"
 msgstr "Chave do Cliente Google"
 
-#: admin/SlytSetting.php:144 admin/SlytSetting.php:511
-#: admin/SlytSetting.php:529
+#: src/Admin/Setting.php:155 src/Admin/Setting.php:531
+#: src/Admin/Setting.php:551
 msgid "Google Client redirect URI"
 msgstr "Redirecionamento do Cliente Google"
 
-#: admin/SlytSetting.php:176
+#: src/Admin/Setting.php:187
 msgid "Google Client"
 msgstr "Cliente Google"
 
-#: admin/SlytSetting.php:188
+#: src/Admin/Setting.php:199
 msgid "YouTube Channel ID"
 msgstr "ID do Canal no YouTube"
 
-#: admin/SlytSetting.php:192
+#: src/Admin/Setting.php:203
 msgid "YouTube Channel Title"
 msgstr "Título do Canal no YouTube"
 
-#: admin/SlytSetting.php:196
+#: src/Admin/Setting.php:207
 msgid "YouTube Channel URI"
 msgstr "URI do Canal no YouTube"
 
-#: admin/SlytSetting.php:228
+#: src/Admin/Setting.php:239
 msgid "YouTube"
 msgstr "YouTube"
 
-#: admin/SlytSetting.php:239
+#: src/Admin/Setting.php:250
 msgid "User profile"
 msgstr "Imagem do perfil"
 
-#: admin/SlytSetting.php:254 admin/SlytSetting.php:566
+#: src/Admin/Setting.php:265 src/Admin/Setting.php:592
 msgid "Default role"
 msgstr "Papel padrão"
 
-#: admin/SlytSetting.php:278
+#: src/Admin/Setting.php:289
 msgid "User registration"
 msgstr "Registro do Usuário"
 
-#: admin/SlytSetting.php:289
+#: src/Admin/Setting.php:300
 msgid "Always show the Google account consent screen"
 msgstr "Sempre exibir a tela de consentimento da conta do Google"
 
-#: admin/SlytSetting.php:313
+#: src/Admin/Setting.php:324
 msgid "Login page"
 msgstr "Página de Login"
 
-#: admin/SlytSetting.php:347
+#: src/Admin/Setting.php:359
 msgid "YouTube Channel ID is required"
 msgstr "É necessário um ID do Canal no YouTube"
 
-#: admin/SlytSetting.php:352
+#: src/Admin/Setting.php:364
 msgid "YouTube Channel Title is required"
 msgstr "É necessário um Título do Canal no YouTube"
 
 #. translators: %s it's a YouTube Channel URI.
-#: admin/SlytSetting.php:360
+#: src/Admin/Setting.php:372
 msgid "YouTube Channel URI should be like %s"
 msgstr "URI do Canal no YouTube deve ser algo como %s"
 
-#: admin/SlytSetting.php:367
+#: src/Admin/Setting.php:379
 msgid "Google Client ID is required"
 msgstr "É necessário um ID do Cliente Google"
 
-#: admin/SlytSetting.php:372
+#: src/Admin/Setting.php:384
 msgid "Google Client secret is required"
 msgstr "É necessário uma chave do Cliente Google"
 
 #. translators: %s it's the plugin slug.
-#: admin/SlytSetting.php:384
+#: src/Admin/Setting.php:396
 msgid "Google Client redirect URI should be something like <code>%s</code>."
 msgstr ""
 "É necessário um URI válido como, por exemplo, <code>%s</code> para o URI de "
 "redirecionamento do Cliente Google."
 
-#: admin/SlytSetting.php:452 admin/SlytSetting.php:551
+#: src/Admin/Setting.php:467 src/Admin/Setting.php:575
 msgid "Basic"
 msgstr "Básico"
 
-#: admin/SlytSetting.php:454 admin/SlytSetting.php:558
+#: src/Admin/Setting.php:469 src/Admin/Setting.php:583
 msgid "Full"
 msgstr "Completo"
 
 #. translators: %s: it's an URI address.
-#: admin/SlytSetting.php:485
+#: src/Admin/Setting.php:503
 msgid ""
 "You can see your YouTube Channel ID in your <a href=\"%s\">advanced account "
 "settings</a> on YouTube."
@@ -142,7 +144,7 @@ msgstr ""
 "\">Configurações avançadas</a> no site do YouTube."
 
 #. translators: %1$s: it's an URI address. %2$s, %3$s, and %4$s: those are Google Client OAuth 2.0 parameters.
-#: admin/SlytSetting.php:506
+#: src/Admin/Setting.php:526
 msgid ""
 "Before using this plugin, you need to set up a Google project for web "
 "application in <a href=\"%1$s\">Google Console</a>. It's a Google "
@@ -155,7 +157,7 @@ msgstr ""
 "\" e \"%4$s\"."
 
 #. translators: %1$s, %2$s, and %3$s: those are Google Client OAuth 2.0 scopes. %4$s: it's an URI address. %5$s: it's an Google support page for setting up OAuth 2.0.
-#: admin/SlytSetting.php:516
+#: src/Admin/Setting.php:537
 msgid ""
 "Activate the \"YouTube Data API v3\" in your project and add the scopes "
 "<code>%1$s</code>, <code>%2$s</code>, and <code>%3$s</code> for its consent "
@@ -166,18 +168,18 @@ msgstr ""
 "consentimento. Vide mais detalhes em <a href=\"%4$s\">%5$s</a>."
 
 #. translators: %1$s: it's an URI address. %2$s: it's the redirect URI for a Google Client OAuth 2.0.
-#: admin/SlytSetting.php:527
+#: src/Admin/Setting.php:549
 msgid "Set your project \"%1$s\" to be something like <code>%2$s</code>."
 msgstr ""
 "Configure o \"%1$s\" do seu projeto para ser algo do tipo <code>%2$s</code>."
 
 #. translators: %1s: the "Basic" option for "User profile".
-#: admin/SlytSetting.php:549
+#: src/Admin/Setting.php:573
 msgid "The \"%s\" user profile stores: email and picture."
 msgstr "O  perfil \"%s\" armazena: e-mail e imagem do perfil."
 
 #. translators: %1$s: the "Full" option for "User profile". %2$s: it's a scope for a Google Client OAuth 2.0.
-#: admin/SlytSetting.php:556
+#: src/Admin/Setting.php:581
 msgid ""
 "The \"%s\" user profile stores: email, picture, full name, given name, "
 "family name, and locale. This option only works if the scope <code>%2$s</"
@@ -188,7 +190,7 @@ msgstr ""
 "%2$s</code> for adicionado ao projeto de aplicação web no Google Console."
 
 #. translators: %s: the "Default role" option.
-#: admin/SlytSetting.php:564
+#: src/Admin/Setting.php:590
 msgid ""
 "When users login for the first time they will be registrated as the \"%s\"."
 msgstr ""
@@ -196,57 +198,71 @@ msgstr ""
 "como \"%s\"."
 
 #. translators: %s it's the filter slug.
-#: admin/SlytSetting.php:585
+#: src/Admin/Setting.php:613
 msgid "Add the filter <code>%s</code> to custom your sign in button."
 msgstr ""
 "Adicione o filtro <code>%s</code> para personalizar o seu botão de \"Entrar "
 "com o YouTube\"."
 
-#: admin/SlytSetting.php:592
+#: src/Admin/Setting.php:620
 msgid "Example"
 msgstr "Exemplo"
 
 #. translators: %s: the function.php template file.
-#: admin/SlytSetting.php:595
+#: src/Admin/Setting.php:624
 msgid "Add to <code>%s</code> template file the following code."
 msgstr "Adicione o código a seguir no arquivo <code>%s</code> do tema."
 
 #. translators: %s it's the plugin name.
-#: admin/SlytSetting.php:620
+#: src/Admin/Setting.php:650
 msgid "%s &bullet; Settings"
 msgstr "%s &bullet; Configurações"
 
-#: admin/SlytSetting.php:628
+#: src/Admin/Setting.php:658
 msgid "Save"
 msgstr "Salvar"
 
-#: admin/SlytUser.php:192
-msgid "Google account"
-msgstr "Conta do Google"
-
-#: admin/SlytUser.php:196 admin/SlytUser.php:200
-msgid "Revoke access"
-msgstr "Revogar acesso"
-
-#: admin/SlytUser.php:201
-msgid "Revoke the website access to this Google account."
-msgstr "Revogar o acesso desse website à conta Google do usuário."
-
-#: admin/SlytUser.php:203
-msgid "This Google account was revoked."
-msgstr "O acesso a esta conta do Google foi revogado."
-
-#: includes/SlytPlugin.php:281
+#: src/Site/Plugin.php:289
 msgid "Sign in with YouTube"
 msgstr "Entrar com o YouTube"
 
-#: includes/SlytPlugin.php:286
+#: src/Site/Plugin.php:294
 msgid "YouTube icon"
 msgstr "Ícone do YouTube"
 
 #. translators: %s: it's an URI address.
-#: includes/SlytPlugin.php:306
+#: src/Site/Plugin.php:315
 msgid "You need to subscribe to <a href=\"%1$s\">%2$s</a> for login."
 msgstr ""
 "Você precisa inscrever-se no canal <a href=\"%1$s\">%2$s</a> para entrar no "
 "site."
+
+#: src/Site/User.php:204
+msgid "Google account"
+msgstr "Conta do Google"
+
+#: src/Site/User.php:208 src/Site/User.php:212
+msgid "Revoke access"
+msgstr "Revogar acesso"
+
+#: src/Site/User.php:213
+msgid "Revoke the website access to this Google account."
+msgstr "Revogar o acesso desse website à conta Google do usuário."
+
+#: src/Site/User.php:215
+msgid "This Google account was revoked."
+msgstr "O acesso a esta conta do Google foi revogado."
+
+#. translators: %1$s: the plugin name; %2$s: PHP version
+#: subscriber-login-for-youtube.php:61
+msgid "%1$s requires PHP version %2$s or later. This plugin is NOT RUNING."
+msgstr ""
+"%1$s requer o PHP versão %2$s ou posterior. Esse plugin NÃO ESTÁ EXECUTANDO."
+
+#. translators: %1$s: the plugin name; %2$s: WordPress version
+#: subscriber-login-for-youtube.php:73
+msgid ""
+"%1$s requires WordPress version %2$s or later. This plugin is NOT RUNING."
+msgstr ""
+"%1$s requer o WordPress versão %2$s ou posterior. Esse plugin NÃO ESTÁ "
+"EXECUTANDO."

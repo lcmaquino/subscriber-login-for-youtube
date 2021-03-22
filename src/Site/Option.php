@@ -1,42 +1,43 @@
 <?php
+namespace Lcmaquino\SubscriberLoginForYouTube\Site;
 
-class SlytOption
+class Option
 {
     /**
      * Plugin version.
-     * 
+     *
      * @var string
      */
-    protected const PLUGIN_VERSION = '1.0.3';
+    const PLUGIN_VERSION = '1.0.4';
 
     /**
      * Plugin name.
-     * 
+     *
      * @var string
      */
-    protected const PLUGIN_NAME = 'Subscriber Login for YouTube';
+    const PLUGIN_NAME = 'Subscriber Login for YouTube';
 
     /**
      * Plugin slug.
-     * 
+     *
      * @var string
      */
 
-    protected const PLUGIN_SLUG = 'subscriber-login-for-youtube';
+    const PLUGIN_SLUG = 'subscriber-login-for-youtube';
 
     /**
      * Option name.
-     * 
+     *
      * @var string
      */
-    protected const OPTION_NAME = 'subscriber_login_for_youtube';
+    const OPTION_NAME = 'subscriber_login_for_youtube';
 
     /**
      * Default value for the option.
-     * 
+     *
      * @var array
     */
-    protected const DEFAULT = array(
+    const DEFAULT = array(
         'youtube_channel_id' => '',
         'youtube_channel_title' => '',
         'youtube_channel_uri' => '',
@@ -56,12 +57,13 @@ class SlytOption
     protected $option;
 
     /**
-     * Instance of SlytOption.
+     * Instance of Option.
      *
      * @return void
      */
-    public function __constructor() {
-        $this->option = get_option( self::OPTION_NAME );
+    public function __constructor()
+    {
+        $this->option = get_option(self::OPTION_NAME);
     }
 
     /**
@@ -69,8 +71,9 @@ class SlytOption
      *
      * @return void
      */
-    public function default() {
-        return current_user_can( 'manage_options' ) && update_option( self::OPTION_NAME, self::DEFAULT, false );
+    public function default()
+    {
+        return current_user_can('manage_options') && update_option(self::OPTION_NAME, self::DEFAULT, false);
     }
 
     /**
@@ -78,10 +81,11 @@ class SlytOption
      *
      * @return array
      */
-    public function all() {
-        $this->option = get_option( self::OPTION_NAME );
-        foreach( self::DEFAULT as $key => $value ) {
-            $value = isset( $this->option[$key] ) ? $this->option[$key] : $value;
+    public function all()
+    {
+        $this->option = get_option(self::OPTION_NAME);
+        foreach (self::DEFAULT as $key => $value) {
+            $value = isset($this->option[$key]) ? $this->option[$key] : $value;
             $this->option[$key] = $value;
         }
 
@@ -94,8 +98,9 @@ class SlytOption
      * @param array $option
      * @return bool
      */
-    public function update( $option = [] ) {
-        return current_user_can( 'manage_options' ) && update_option( self::OPTION_NAME, $option, false );
+    public function update($option = array())
+    {
+        return current_user_can('manage_options') && update_option(self::OPTION_NAME, $option, false);
     }
 
     /**
@@ -103,45 +108,49 @@ class SlytOption
      *
      * @return bool
      */
-    public function delete() {
-        return current_user_can( 'manage_options' ) && delete_option( self::OPTION_NAME );
+    public function delete()
+    {
+        return current_user_can('manage_options') && delete_option(self::OPTION_NAME);
     }
 
     /**
      * Get the option with $key.
      *
-     * @param string $key 
+     * @param string $key
      * @param mixed $default
      * @return mixed
      */
-    public function get( $key = '', $default = null ) {
+    public function get($key = '', $default = null)
+    {
         $option = $this->all();
 
-        return $this->exists( $key ) ? $option[$key] : $default;
+        return $this->exists($key) ? $option[$key] : $default;
     }
 
     /**
      * Set the option with $key.
      *
-     * @param string $key 
+     * @param string $key
      * @param mixed $value
      * @return bool
      */
-    public function set( $key = '', $value = null ) {
+    public function set($key = '', $value = null)
+    {
         $option = $this->all();
         $option[$key] = $value;
         
-        return $this->update( $option );
+        return $this->update($option);
     }
 
     /**
      * Check if $key is an option key.
      *
-     * @param string $key 
+     * @param string $key
      * @return bool
      */
-    public function exists($key = '') {
-        return array_key_exists( $key, self::DEFAULT );
+    public function exists($key = '')
+    {
+        return array_key_exists($key, self::DEFAULT);
     }
 
     /**
@@ -149,7 +158,8 @@ class SlytOption
      *
      * @return string
      */
-    public function get_plugin_slug() {
+    public function getPluginSlug()
+    {
         return self::PLUGIN_SLUG;
     }
 
@@ -158,7 +168,8 @@ class SlytOption
      *
      * @return string
      */
-    public function get_plugin_name() {
+    public function getPluginName()
+    {
         return self::PLUGIN_NAME;
     }
 
@@ -167,7 +178,8 @@ class SlytOption
      *
      * @return string
      */
-    public function get_name() {
+    public function getName()
+    {
         return self::OPTION_NAME;
     }
 
@@ -176,7 +188,8 @@ class SlytOption
      *
      * @return string
      */
-    public function get_version() {
+    public function getVersion()
+    {
         return self::PLUGIN_VERSION;
     }
 
@@ -185,7 +198,8 @@ class SlytOption
      *
      * @return array
      */
-    public function get_default() {
+    public function getDefault()
+    {
         return self::DEFAULT;
     }
 
@@ -194,7 +208,8 @@ class SlytOption
      *
      * @return array
      */
-    public function get_option() {
+    public function getOption()
+    {
         return $this->all();
     }
 
@@ -203,33 +218,35 @@ class SlytOption
      *
      * @return array
      */
-    public function get_oauth2_config(){
+    public function getOauth2Config()
+    {
         $option = $this->all();
-		$config = [
-			'client_id' => $option['google_client_id'],
-			'client_secret' => $option['google_client_secret'],
-			'redirect_uri' => $option['google_client_redirect_uri'],
-			'youtube_channel_id' => $option['youtube_channel_id']
-		];
+        $config = array(
+            'client_id' => $option['google_client_id'],
+            'client_secret' => $option['google_client_secret'],
+            'redirect_uri' => $option['google_client_redirect_uri'],
+            'youtube_channel_id' => $option['youtube_channel_id']
+        );
 
-		return $config;
-	}
+        return $config;
+    }
 
     /**
      * Get the YouTube channel information.
      *
      * @return array
      */
-    public function get_youtube_channel_info(){
+    public function getYouTubeChannelInfo()
+    {
         $option = $this->all();
-		$info = [
+        $info = array(
             'youtube_channel_id' => $option['youtube_channel_id'],
-			'youtube_channel_title' => $option['youtube_channel_title'],
-			'youtube_channel_uri' => $option['youtube_channel_uri']
-		];
+            'youtube_channel_title' => $option['youtube_channel_title'],
+            'youtube_channel_uri' => $option['youtube_channel_uri']
+        );
 
-		return $info;
-	}
+        return $info;
+    }
 
     /**
      * Check if the value of some option is an integer.
@@ -237,8 +254,9 @@ class SlytOption
      * @param string $key
      * @return bool
      */
-    public function is_int( $key = '' ) {
-        return is_int( self::DEFAULT[$key] );
+    public function isInt($key = '')
+    {
+        return is_int(self::DEFAULT[$key]);
     }
 
     /**
@@ -247,8 +265,9 @@ class SlytOption
      * @param string $key
      * @return bool
      */
-    public function is_string( $key = '' ) {
-        return is_string( self::DEFAULT[$key] );
+    public function isString($key = '')
+    {
+        return is_string(self::DEFAULT[$key]);
     }
 
     /**
@@ -257,9 +276,10 @@ class SlytOption
      * @param string $text
      * @return string
      */
-    public function add_name( $text = '' ) {
-		return self::OPTION_NAME . '_' . $text;
-	}
+    public function addName($text = '')
+    {
+        return self::OPTION_NAME . '_' . $text;
+    }
 
     /**
      * Remove the option name of $text.
@@ -267,7 +287,8 @@ class SlytOption
      * @param string $text
      * @return string
      */
-	public function remove_name($text = '') {
-		return str_replace( self::OPTION_NAME . '_', '', $text );
-	}
+    public function removeName($text = '')
+    {
+        return str_replace(self::OPTION_NAME . '_', '', $text);
+    }
 }

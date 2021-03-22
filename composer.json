@@ -1,0 +1,28 @@
+{
+    "name": "lcmaquino/subscriber-login-for-youtube",
+    "description": " Subscriber Login for YouTube is a WordPress plugin for Google OAuth 2.0 authentication with YouTube Google account.",
+    "type": "wordpress-plugin",
+    "keywords": ["wordpress-plugin", "youtube", "google", "oauth2", "youtube-api-v3"],
+    "license": "GPL-2.0-or-later",
+    "homepage": "https://wordpress.org/plugins/subscriber-login-for-youtube/",
+    "support": {
+        "issues": "https://github.com/lcmaquino/subscriber-login-for-youtube/issues",
+        "source": "https://github.com/lcmaquino/subscriber-login-for-youtube"
+    },
+    "authors": [
+        {
+            "name": "Luiz C. M. de Aquino",
+            "email": "contato@professoraquino.com.br"
+        }
+    ],
+    "require": {
+        "php": ">=7.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Lcmaquino\\SubscriberLoginForYouTube\\": "src/"
+        }
+    },
+    "minimum-stability": "stable",
+    "prefer-stable": true
+}

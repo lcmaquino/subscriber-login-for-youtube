@@ -1,21 +1,19 @@
 <?php
+namespace Lcmaquino\SubscriberLoginForYouTube\Site;
 
-require_once( SLYT_INCLUDES_PATH . '/SlytGoogleUser.php' );
-require_once( SLYT_INCLUDES_PATH . '/SlytHttpClient.php' );
-
-class SlytGoogleOauth2
+class GoogleOauth2
 {
     /**
      * The state of the web app.
-     * 
+     *
      * @var string
      */
     protected $state;
 
     /**
-     * The SlytHttpClient instance.
+     * The HttpClient instance.
      *
-     * @var SlytHttpClient
+     * @var HttpClient
      */
     protected $httpClient;
 
@@ -45,14 +43,14 @@ class SlytGoogleOauth2
      *
      * @var array
      */
-    protected $scopes = [];
+    protected $scopes = array();
 
     /**
      * The custom parameters to be sent with the request.
      *
      * @var array
      */
-    protected $parameters = [];
+    protected $parameters = array();
 
     /**
      * The type of the encoding in the query.
@@ -64,24 +62,24 @@ class SlytGoogleOauth2
     /**
      * The cached user instance.
      *
-     * @var 
+     * @var
      */
     protected $user;
 
     /**
      * Create a new GoogleOAuth2Manager instance.
-     * 
+     *
      * @param  array  $config
      * @return void
      */
-    public function __construct($config = [])
+    public function __construct($config = array())
     {
         $this->setConfig($config);
-        $this->scopes = [
+        $this->scopes = array(
             'openid',
             'email'
-        ];
-        $this->httpClient = new SlytHttpClient();
+        );
+        $this->httpClient = new HttpClient();
         $this->user = null;
     }
 
@@ -108,9 +106,9 @@ class SlytGoogleOauth2
     }
 
     /**
-     * Set the SlytHttpClient instance.
+     * Set the HttpClient instance.
      *
-     * @param  SlytHttpClient  $client
+     * @param  HttpClient  $client
      * @return $this
      */
     protected function setHttpClient($client = null)
@@ -120,9 +118,9 @@ class SlytGoogleOauth2
     }
 
     /**
-     * Get a instance of the SlytHttpClient.
+     * Get a instance of the HttpClient.
      *
-     * @return SlytHttpClient
+     * @return HttpClient
      */
     protected function getHttpClient()
     {
@@ -159,7 +157,7 @@ class SlytGoogleOauth2
      * @param  array $scopes
      * @return $this
      */
-    public function scopes($scopes = [])
+    public function scopes($scopes = array())
     {
         $this->scopes = array_unique($scopes);
 
@@ -189,7 +187,8 @@ class SlytGoogleOauth2
      * @param array  $config
      * @return $this
      */
-    public function setConfig($config = []){
+    public function setConfig($config = array())
+    {
         $this->clientId = $config['client_id'];
         $this->clientSecret = $config['client_secret'];
         $this->redirectUri = $config['redirect_uri'];
@@ -201,12 +200,13 @@ class SlytGoogleOauth2
      *
      * @return void
      */
-    public function getConfig(){
-        return [
+    public function getConfig()
+    {
+        return array(
             'client_id' => $this->clientId,
             'client_secret' => $this->clientSecret,
             'client_redirect' => $this->redirectUri,
-        ];
+        );
     }
 
     /**
@@ -283,14 +283,14 @@ class SlytGoogleOauth2
      */
     protected function getCodeFields($state = null)
     {
-        $fields = [
+        $fields = array(
             'client_id' => $this->clientId,
             'redirect_uri' => $this->redirectUri,
             'scope' => $this->formatScopes($this->scopes),
             'response_type' => 'code',
-        ];
+        );
 
-        if ( $state ) {
+        if ($state) {
             $fields['state'] = $state;
         }
 
@@ -305,13 +305,13 @@ class SlytGoogleOauth2
      */
     protected function getTokenFields($code = '')
     {
-        return [
+        return array(
             'code' => $code,
             'client_id' => $this->clientId,
             'client_secret' => $this->clientSecret,
             'redirect_uri' => $this->redirectUri,
             'grant_type' => 'authorization_code',
-        ];
+        );
     }
 
     /**
@@ -322,9 +322,9 @@ class SlytGoogleOauth2
      */
     protected function getUserInfoFields($token = '')
     {
-        return [
+        return array(
             'access_token' => $token,
-        ];
+        );
     }
 
     /**
@@ -335,12 +335,12 @@ class SlytGoogleOauth2
      */
     protected function getRefreshTokenFields($refresh_token = '')
     {
-        return [
+        return array(
             'client_id' => $this->clientId,
             'client_secret' => $this->clientSecret,
             'refresh_token' => $refresh_token,
             'grant_type' => 'refresh_token',
-        ];
+        );
     }
 
     /**
@@ -351,9 +351,9 @@ class SlytGoogleOauth2
      */
     protected function getRevokeTokenFields($token = '')
     {
-        return [
+        return array(
             'token' => $token,
-        ];
+        );
     }
 
     /**
@@ -391,7 +391,7 @@ class SlytGoogleOauth2
      */
     protected function getAccessTokenResponse($code = '')
     {
-        $response = empty($code) ? null : 
+        $response = empty($code) ? null :
             $this->getHttpClient()->post(
                 $this->getTokenUrl(),
                 $this->getTokenFields($code)
@@ -408,9 +408,9 @@ class SlytGoogleOauth2
      */
     protected function getUserInfoResponse($token = '')
     {
-        $response = empty($token) ? null : 
+        $response = empty($token) ? null :
             $this->getHttpClient()->get(
-                $this->getUserInfoUrl(), 
+                $this->getUserInfoUrl(),
                 $this->getUserInfoFields($token)
             );
 
@@ -425,9 +425,9 @@ class SlytGoogleOauth2
      */
     protected function getRefreshTokenResponse($refresh_token = '')
     {
-        $response = empty($refresh_token) ? null : 
+        $response = empty($refresh_token) ? null :
             $this->getHttpClient()->post(
-                $this->getTokenUrl(), 
+                $this->getTokenUrl(),
                 $this->getRefreshTokenFields($refresh_token)
             );
 
@@ -452,31 +452,16 @@ class SlytGoogleOauth2
     }
 
     /**
-     * Map the raw user array to a SlytGoogleUser instance.
+     * Map the raw user array to a GoogleUser instance.
      *
      * @param  array  $rawAttributes
-     * @return SlytGoogleUser
+     * @return GoogleUser
      */
-    protected function mapUserToObject( array $rawAttributes )
-    { 
-        $attributes = [
-            'sub' => null,
-            'name' => '',
-            'given_name' => '',
-            'family_name' => '',
-            'locale' => '',
-            'email' => null,
-            'email_verified' => 0,
-            'picture' =>  null,
-        ];
-
-        foreach ($attributes as $key => $value) {
-            $attributes[$key] = isset( $rawAttributes[$key] ) ? $rawAttributes[$key] : $attributes[$key];
-        }
-
-        $gu = new SlytGoogleUser();
+    protected function mapUserToObject(array $rawAttributes)
+    {
+        $gu = new GoogleUser();
         
-        return $gu->map($attributes);
+        return $gu->setRaw($rawAttributes);
     }
 
     /**
@@ -486,7 +471,7 @@ class SlytGoogleOauth2
      */
     protected function usesState()
     {
-        return !empty( $this->state );
+        return !empty($this->state);
     }
 
     /**
@@ -513,7 +498,7 @@ class SlytGoogleOauth2
 
     /**
      * Determine if the current state of the web app has a mismatching "state".
-     * 
+     *
      * @param  string $input_state
      * @return bool
      */
@@ -538,47 +523,47 @@ class SlytGoogleOauth2
      * @param string $code
      * @param string $state
      * @param string $session_state
-     * @return SlytGoogleUser|null
+     * @return GoogleUser|null
      */
-    public function user( $code = '', $state = null, $session_state = null )
+    public function user($code = '', $state = null, $session_state = null)
     {
-        if ( !empty( $this->user ) ) {
+        if (!empty($this->user)) {
             return $this->user;
         }
 
-        if ( $this->hasInvalidState( $state, $session_state ) ) {
+        if ($this->hasInvalidState($state, $session_state)) {
             return null;
         }
 
         $response = $this->getAccessTokenResponse($code);
 
-        $token = $response && isset( $response['access_token'] ) ? $response['access_token'] : null;
+        $token = $response && isset($response['access_token']) ? $response['access_token'] : null;
 
-        if( empty( $token ) ) {
+        if (empty($token)) {
             return null;
         }
 
-        $user = $this->getUserFromToken( $token );
-        $refresh_token = isset( $response['refresh_token'] ) ? $response['refresh_token'] : null;
+        $user = $this->getUserFromToken($token);
+        $refresh_token = isset($response['refresh_token']) ? $response['refresh_token'] : null;
         $expires_in = $response['expires_in'];
 
-        return empty( $user ) ? null : 
+        return empty($user) ? null :
             $this->user
-                ->setRefreshToken( $refresh_token )
-                ->setExpiresIn( $expires_in );
+                ->setRefreshToken($refresh_token)
+                ->setExpiresIn($expires_in);
     }
 
     /**
-     * Get a SlytGoogleUser instance from a known access token.
+     * Get a GoogleUser instance from a known access token.
      *
      * @param  string  $token
-     * @return SlytGoogleUser
+     * @return GoogleUser
      */
     public function getUserFromToken($token = '')
     {
         $response = $this->getUserInfoResponse($token);
 
-        if(empty($response) || isset($response['error'])) {
+        if (empty($response) || isset($response['error'])) {
             return null;
         }
 
@@ -590,11 +575,12 @@ class SlytGoogleOauth2
     /**
      * Refresh the user's token and returns the new one.
      * Returns null if the token was not refreshed.
-     * 
+     *
      * @param  string  $refresh_token
      * @return string|null
      */
-    public function refreshUserToken($refresh_token = ''){
+    public function refreshUserToken($refresh_token = '')
+    {
         $response = $this->getRefreshTokenResponse($refresh_token);
 
         return isset($response['access_token']) ? $response['access_token'] : null;
@@ -604,11 +590,12 @@ class SlytGoogleOauth2
      * Revoke the user's access token and refresh token (at the same time).
      * The $token parameter can be the access token or the refresh token.
      * Returns true if the token was revoked and false otherwise.
-     * 
+     *
      * @param  string  $token
      * @return boolean
      */
-    public function revokeToken($token = ''){
+    public function revokeToken($token = '')
+    {
         $response = $this->getRevokeTokenResponse($token);
         
         return empty($response);
