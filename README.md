@@ -15,7 +15,7 @@ For more information about Google OAuth 2.0, please see [Using OAuth 2.0 for Web
 ## Requirements
 
 - PHP 7.0 or later;
-- WordPress 4.9 or later;
+- WordPress 4.4 or later;
 
 ## Installation
 
