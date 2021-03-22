@@ -71,6 +71,9 @@ After you activated the plugin, then the plugin will automatically:
 
 == Changelog ==
 
+= 1.0.4 =
+* Code refactoring for PSR-4 compliance.
+
 = 1.0.3 =
 * Update version on `includes/SlytOption.php`.
 
